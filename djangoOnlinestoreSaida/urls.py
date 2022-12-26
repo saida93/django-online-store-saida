@@ -1,12 +1,15 @@
-
-
 from django.contrib import admin
 from django.urls import path
-from posts.views import main, now_date, goodbye
+from products.views import products_view, main_view, product_detail_view,categories_view
+from django.conf.urls.static import static
+from djangoOnlinestoreSaida import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main),
-    path('goodbye/', goodbye),
-    path('now_date/', now_date)
+    path('', main_view),
+    path('products/', products_view),
+    path('products/<int:id>/', product_detail_view),
+    path('categories/', categories_view)
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

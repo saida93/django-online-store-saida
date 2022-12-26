@@ -1,0 +1,77 @@
+{% extends 'layouts/index.html' %}
+
+
+{% block content %}
+    <style type="text/css">
+        .category {
+            font-size: ;
+        }
+        .product {
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        .product > h5 {
+            margin-top: 50px;
+        }
+
+        .dates {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .review {
+            margin-top: 30px;
+        }
+
+        .review_block {
+            height: max-content;
+            padding: 10px;
+            border: 1px solid #242b2e;
+            color: #242b2e;
+            background: black;
+        }
+
+        .review {
+            margin-top: 30px;
+        }
+
+        .review_block {
+            height: max-content;
+            padding: 10px;
+            border: 1px solid #242b2e;
+            color: cadetblue;
+        }
+        .product{
+            width: 100%;
+        }
+    </style>
+    <div style="margin: 0 auto;width: 50%" class="product">
+        {% if product.image %}
+            <img  style="width: 100%;" src="{{ product.image.url }}/" alt="">
+        {% else %}
+            <img src="" alt="">
+        {% endif %}
+        <h1>{{ product.title }}</h1>
+        <h5>{{ product.description }}</h5>
+        <div class="dates">
+            <h5>{{ product.date }}</h5>
+            <h5>{{ product.rate }}</h5>
+        </div>
+        <div class="review">
+            <div class="category">
+                    {% for categori in category %}
+                        <div class="category">
+                            <h6>{{ categori.title }}</h6>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% for review in review %}
+                <div class="review_block">
+                    <h6>{{ review.text }}</h6>
+                    <p>{{ review.created_date }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
